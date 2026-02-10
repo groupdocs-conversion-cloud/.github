@@ -19,9 +19,9 @@
 
 ## Latest Conversion News & Updates
 
+* New Salesforce Free Component [Converter PDF](https://appexchange.salesforce.com/appxListingDetail?listingId=a01f33f8-8539-465d-be77-7067b5e6364a) was deployed. Download and use within the Salesforce APEX SDK
 * Published [GroupDocs.Conversion 25.12](https://www.nuget.org/packages/GroupDocs.Conversion/) on NuGet and Maven — performance improvements for PDF/Office to PDF, better font fallback, and leaner HTML output.
-* Added sample flows for **DOCX to PDF with watermarks** and **CAD to PDF** in .NET examples.
-* New guides on page-range conversion, caching, and password-protected documents at [GroupDocs.Conversion Blog](https://blog.groupdocs.cloud/category/conversion/).
+* New guides were published at [GroupDocs.Conversion Cloud Blog](https://blog.groupdocs.cloud/categories/groupdocs.conversion-cloud-product-family/).
 
 ---
 
@@ -166,6 +166,36 @@ settings := models.ConvertSettings{
     OutputPath: "converted",
 }
 result, _, err := config.Client.ConvertApi.ConvertDocument(config.Ctx, settings)
+```
+
+### 🔷 Salesforce and Apex SDL
+
+Use GroupDocs.Conversion Cloud from Salesforce via Apex: deploy the Cloud SDK for Apex, then call the Conversion API (upload, convert, download) from your org. The demos below include a free converter component and a sample application.
+
+* **[groupdocs-comparison-cloud-apex](https://github.com/groupdocs-comparison-cloud/groupdocs-comparison-cloud-apex)** — GroupDocs Cloud SDK for Apex (configuration, file storage, and API clients; use with Conversion and other Cloud APIs).
+* **[GroupDocs.Salesforce-Demo](https://github.com/groupdocs/GroupDocs.Salesforce-Demo)** — Salesforce demo app with free converter PDF component and document management (preview, compare, convert) using GroupDocs Cloud.
+* **[salesforce-conversion-apex-sdk-demo-application](https://github.com/groupdocs-conversion-cloud/salesforce-conversion-apex-sdk-demo-application)** — Sample Salesforce app with Apex SDK examples for GroupDocs.Conversion Cloud.
+
+After deploying the SDK and adding `https://api.groupdocs.cloud` in **Remote Site Settings**, you can convert a document from Apex as follows (upload → convert → optional download). See [GDController.cls](https://github.com/groupdocs/GroupDocs.Salesforce-Demo/blob/main/force-app/main/default/classes/GDController.cls) for a full controller example.
+
+```apex
+// Create config and API instances (use your Client Id and Client Secret from https://dashboard.groupdocs.cloud)
+Configuration config = new Configuration('YOUR_API_KEY', 'YOUR_API_SECRET');
+FileApi fileApi = new FileApi(config);
+ConvertApi convertApi = new ConvertApi(config);
+
+// 1. Upload source file to cloud storage
+List<ContentVersion> cvList = [SELECT Id, Title, VersionData FROM ContentVersion WHERE Title = 'four-pages.docx' LIMIT 1];
+fileApi.uploadFile(new UploadFileRequest('WordProcessing/four-pages.docx', cvList[0].VersionData, null));
+
+// 2. Convert document (e.g. DOCX to PDF)
+ConvertSettings settings = new ConvertSettings();
+settings.FilePath = 'WordProcessing/four-pages.docx';
+settings.Format = 'pdf';
+settings.OutputPath = 'converted';
+
+List<StoredConvertedResult> result = convertApi.convertDocument(new ConvertDocumentRequest(settings));
+// 3. Download from result[0].Url or use FileApi to get the file
 ```
 
 ---
