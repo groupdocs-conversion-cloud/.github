@@ -18,7 +18,34 @@
 
 ## 📂 Cloud SDKs & Repositories
 
-SDKs are grouped by platform. Each example converts a Word document to PDF using the [Convert document](https://docs.groupdocs.cloud/conversion/convert-document/) API.
+SDKs are grouped by platform. Each example converts a Word document to PDF using the [Convert document](https://docs.groupdocs.cloud/conversion/convert-document/) API. The same call is shown first as plain REST (cURL), then for each SDK.
+
+### 📡 cURL (REST API)
+
+Call the Conversion Cloud REST API directly (no SDK). Obtain a JWT from the [token endpoint](https://docs.groupdocs.cloud/conversion/convert-document/) (`client_credentials`), then convert:
+
+```bash
+# Get JWT (Client Id / Client Secret from https://dashboard.groupdocs.cloud/applications)
+curl -v "https://api.groupdocs.cloud/connect/token" \
+  -X POST \
+  -d "grant_type=client_credentials&client_id=$CLIENT_ID&client_secret=$CLIENT_SECRET" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -H "Accept: application/json"
+
+# Convert document (Word → PDF)
+curl -v "https://api.groupdocs.cloud/v2.0/conversion" \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -H "Authorization: Bearer $JWT_TOKEN" \
+  -d '{
+        "FilePath": "WordProcessing/four-pages.docx",
+        "Format": "pdf",
+        "OutputPath": "Output"
+      }'
+```
+
+Source: [Convert document](https://docs.groupdocs.cloud/conversion/convert-document/) (cURL example).
 
 ### 🌐 .NET (C#, ASP.NET)
 
