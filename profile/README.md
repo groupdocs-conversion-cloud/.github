@@ -15,15 +15,6 @@
 [![Support](https://img.shields.io/badge/Support-2865E0?style=for-the-badge&logo=Discourse&logoColor=white)](https://forum.groupdocs.cloud/c/conversion/11)
 [![Temp License](https://img.shields.io/badge/Temp%20License-2865E0?style=for-the-badge&logo=rocket&logoColor=white)](https://purchase.groupdocs.cloud/cloud/trial/)
 
----
-
-## Latest Conversion News & Updates
-
-* New Salesforce Free Component [Converter PDF](https://appexchange.salesforce.com/appxListingDetail?listingId=a01f33f8-8539-465d-be77-7067b5e6364a) was deployed. Download and use within the Salesforce APEX SDK
-* Published [GroupDocs.Conversion 25.12](https://www.nuget.org/packages/GroupDocs.Conversion/) on NuGet and Maven — performance improvements for PDF/Office to PDF, better font fallback, and leaner HTML output.
-* New guides were published at [GroupDocs.Conversion Cloud Blog](https://blog.groupdocs.cloud/categories/groupdocs.conversion-cloud-product-family/).
-
----
 
 ## 📂 Cloud SDKs & Repositories
 
