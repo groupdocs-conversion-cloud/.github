@@ -25,7 +25,7 @@ SDKs are grouped by platform. Each example converts a Word document to PDF using
 Call the Conversion Cloud REST API directly (no SDK). Obtain a JWT from the [token endpoint](https://docs.groupdocs.cloud/conversion/convert-document/) (`client_credentials`), then convert:
 
 ```bash
-# Get JWT (Client Id / Client Secret from https://dashboard.groupdocs.cloud/applications)
+# Get JWT (Client Id / Client Secret from https://dashboard.groupdocs.cloud)
 curl -v "https://api.groupdocs.cloud/connect/token" \
   -X POST \
   -d "grant_type=client_credentials&client_id=$CLIENT_ID&client_secret=$CLIENT_SECRET" \
@@ -230,7 +230,7 @@ List<StoredConvertedResult> result = convertApi.convertDocument(new ConvertDocum
 
 ## 🔑 API Key & Authentication
 
-Use **Client ID** and **Client Secret** from [GroupDocs Cloud Dashboard](https://dashboard.groupdocs.cloud/applications) to authenticate. Set them in your SDK configuration (e.g. `Configuration`, `from_keys`, or environment variables) before calling the API.
+Use **Client ID** and **Client Secret** from [GroupDocs Cloud Dashboard](https://dashboard.groupdocs.cloud) to authenticate. Set them in your SDK configuration (e.g. `Configuration`, `from_keys`, or environment variables) before calling the API.
 
 ---
 
